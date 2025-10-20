@@ -34,8 +34,8 @@ services:
   # Development Container
   devcontainer:
     build:
-      context: .
-      dockerfile: .devcontainer/Dockerfile
+      context: .devcontainer
+      dockerfile: Dockerfile
     container_name: ai-devcontainer
     volumes:
       - ../ai-devcontainer:/workspace:cached
