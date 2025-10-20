@@ -1,6 +1,26 @@
-# AI DevContainer: Configuration-Driven Development
+# AI DevContainer 🚀
+
+<div align="center">
+
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Docker](https://img.shields.io/badge/docker-ready-blue.svg)
+![VS Code](https://img.shields.io/badge/VS%20Code-DevContainer-blue.svg)
+![Continue](https://img.shields.io/badge/Continue-AI-purple.svg)
+![Extensions](https://img.shields.io/badge/extensions-24-green.svg)
+
+**A portable, configuration-driven development environment for AI-powered coding**
+
+[Quick Start](#-quick-start) • [Features](#-features) • [Configs](#-available-configurations) • [Docs](docs/) • [Contributing](CONTRIBUTING.md)
+
+</div>
+
+---
+
+## 📖 Overview
 
 This repository provides a **portable, configurable, containerized development environment** for AI-powered coding with the Continue extension and your self-hosted AI backend.
+
+Perfect for teams wanting standardized development environments that work anywhere - local machines, remote servers, or cloud instances.
 
 ## 🚀 Features
 - **Configuration-Driven**: Choose Python, Node.js, Full Stack, or create custom configs
