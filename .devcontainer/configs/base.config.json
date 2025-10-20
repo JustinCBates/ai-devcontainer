@@ -1,0 +1,397 @@
+{
+  "name": "Base Development Configuration",
+  "description": "Standard configuration for all AI-powered development environments",
+  
+  "extensions": {
+    "required": [
+      "continue.continue",
+      "eamodio.gitlens",
+      "usernamehw.errorlens",
+      "streetsidesoftware.code-spell-checker",
+      "Gruntfuggly.todo-tree",
+      "PKief.material-icon-theme",
+      "emilast.LogFileHighlighter",
+      "IBM.output-colorizer",
+      "snyk-security.snyk-vulnerability-scanner",
+      "pflannery.vscode-versionlens",
+      "yzhang.markdown-all-in-one",
+      "DavidAnson.vscode-markdownlint",
+      "aaron-bond.better-comments",
+      "alefragnani.Bookmarks",
+      "mhutchie.git-graph",
+      "GitHub.vscode-pull-request-github",
+      "spmeesseman.vscode-taskexplorer",
+      "alefragnani.project-manager",
+      "johnpapa.vscode-peacock",
+      "vivaxy.vscode-conventional-commits",
+      "SonarSource.sonarlint-vscode",
+      "kisstkondoros.vscode-codemetrics",
+      "hbenl.vscode-test-explorer",
+      "ryanluker.vscode-coverage-gutters"
+    ],
+    "recommended": [
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "ms-python.black-formatter",
+      "ms-python.isort",
+      "wayou.vscode-todo-highlight"
+    ],
+    "optional": []
+  },
+
+  "continueConfig": {
+    "enabled": true,
+    "apiBase": "http://ai-backend:8000/v1",
+    "model": "microsoft/DialoGPT-medium",
+    "contextProviders": ["code", "docs", "diff", "terminal", "problems", "folder", "codebase"],
+    "customCommands": {
+      "test": "Write comprehensive unit tests with edge cases",
+      "optimize": "Analyze and optimize for performance",
+      "security": "Perform security audit and identify vulnerabilities",
+      "refactor": "Refactor using SOLID principles and best practices",
+      "explain": "Explain code in detail with key concepts",
+      "docker": "Generate Dockerfile and docker-compose.yml",
+      "review": "Review code for anti-patterns and code smells",
+      "complexity": "Analyze and reduce code complexity",
+      "patterns": "Suggest design patterns to improve architecture"
+    }
+  },
+
+  "features": {
+    "logging": {
+      "enabled": true,
+      "level": "INFO",
+      "format": "structured",
+      "outputs": ["console", "file"],
+      "rotation": "10MB",
+      "retention": "7 days",
+      "contextPropagation": true,
+      "sensitiveDataFiltering": true,
+      "bestPractices": {
+        "useStructuredLogging": true,
+        "includeRequestIds": true,
+        "logPerformanceMetrics": true,
+        "neverLogSensitiveData": true,
+        "useAppropriateLogLevels": true
+      }
+    },
+    "linting": {
+      "enabled": true,
+      "formatOnSave": true,
+      "tools": {
+        "python": ["flake8", "pylint", "black", "isort"],
+        "javascript": ["eslint", "prettier"],
+        "typescript": ["eslint", "prettier"]
+      }
+    },
+    "testing": {
+      "enabled": true,
+      "framework": "auto-detect",
+      "types": {
+        "unit": {
+          "enabled": true,
+          "location": "tests/unit",
+          "pattern": "**/test_*.* or **/*.test.*"
+        },
+        "integration": {
+          "enabled": true,
+          "location": "tests/integration",
+          "pattern": "**/integration_*.* or **/*.integration.*"
+        },
+        "e2e": {
+          "enabled": false,
+          "location": "tests/e2e",
+          "pattern": "**/e2e_*.* or **/*.e2e.*"
+        }
+      },
+      "coverage": {
+        "enabled": true,
+        "format": "lcov",
+        "outputDirectory": "coverage",
+        "thresholds": {
+          "lines": 80,
+          "branches": 75,
+          "functions": 80,
+          "statements": 80
+        }
+      },
+      "bestPractices": {
+        "testPyramid": "Many unit, some integration, few E2E tests",
+        "isolation": "Tests should be independent and isolated",
+        "naming": "Test names should describe what they test",
+        "aaa": "Use Arrange-Act-Assert pattern",
+        "fastFeedback": "Unit tests should run in milliseconds",
+        "coverageGoals": "Aim for 80%+ coverage, 100% for critical paths",
+        "tdd": "Consider Test-Driven Development for new features",
+        "mockExternal": "Mock external dependencies in unit tests"
+      }
+    },
+    "git": {
+      "enabled": true,
+      "autoFetch": true,
+      "hooks": ["pre-commit"]
+    },
+    "documentation": {
+      "enabled": true,
+      "autoGenerate": false,
+      "markdown": true,
+      "diagrams": true,
+      "comments": true,
+      "bestPractices": {
+        "readmeFirst": "Every project needs a comprehensive README.md",
+        "apiDocs": "Document public APIs and interfaces",
+        "architecture": "Include architecture diagrams for complex systems",
+        "changeLog": "Maintain CHANGELOG.md for version tracking",
+        "codeComments": "Comment WHY, not WHAT (code explains what)",
+        "keepUpdated": "Documentation rots quickly - review regularly"
+      }
+    },
+    "dependencies": {
+      "enabled": true,
+      "securityScanning": true,
+      "vulnerabilityAlerts": true,
+      "licenseCompliance": true,
+      "versionTracking": true,
+      "bestPractices": {
+        "pinVersions": "Lock exact versions for reproducibility",
+        "regularUpdates": "Review and update dependencies monthly",
+        "securityFirst": "Prioritize security patches immediately",
+        "licenseAwareness": "Understand and comply with dependency licenses",
+        "minimizeDeps": "Fewer dependencies = smaller attack surface"
+      }
+    },
+    "security": {
+      "enabled": true,
+      "scanDependencies": true,
+      "preventSecretsCommit": true
+    },
+    "workflow": {
+      "enabled": true,
+      "gitVisualization": true,
+      "pullRequests": true,
+      "taskAutomation": true,
+      "projectManagement": true,
+      "commitStandards": "conventional-commits",
+      "branchStrategy": "git-flow",
+      "bestPractices": {
+        "branchNaming": "feature/*, bugfix/*, hotfix/*",
+        "commitFormat": "type(scope): description",
+        "prRequired": "All changes go through pull requests",
+        "codeReview": "Require at least one reviewer",
+        "testsPass": "All tests must pass before merge",
+        "conventionalCommits": "Use semantic commit messages"
+      }
+    },
+    "codeQuality": {
+      "enabled": true,
+      "staticAnalysis": true,
+      "complexityTracking": true,
+      "securityScanning": true,
+      "antiPatternDetection": true,
+      "tools": {
+        "sonarLint": {
+          "enabled": true,
+          "rulesLevel": "default",
+          "showRuleDescription": true,
+          "autoAnalyze": true
+        },
+        "codeMetrics": {
+          "enabled": true,
+          "complexityThreshold": 10,
+          "warningThreshold": 6,
+          "showInStatusBar": true
+        }
+      },
+      "bestPractices": {
+        "lowComplexity": "Keep functions under complexity 10",
+        "noMagicNumbers": "Use named constants instead of magic numbers",
+        "noDuplication": "DRY - Don't Repeat Yourself",
+        "solidPrinciples": "Follow SOLID design principles",
+        "securityFirst": "Always validate and sanitize input",
+        "testable": "Write code that's easy to test",
+        "readable": "Code is read more than it's written"
+      }
+    }
+  },
+
+  "environment": {
+    "DEBUG": "false",
+    "LOG_LEVEL": "INFO",
+    "LOG_FORMAT": "json",
+    "LOG_DIR": "./logs",
+    "DEPENDENCY_CHECK": "true",
+    "VULNERABILITY_SCAN": "enabled",
+    "AUTO_UPDATE_DEPS": "false",
+    "LICENSE_COMPLIANCE": "warn",
+    "DOCS_AUTO_GENERATE": "true",
+    "DOCS_FORMAT": "markdown",
+    "CHANGELOG_AUTO": "false",
+    "DIAGRAM_ENGINE": "mermaid",
+    "GIT_WORKFLOW": "git-flow",
+    "COMMIT_CONVENTION": "conventional",
+    "PR_REQUIRED": "true",
+    "CODE_REVIEW_REQUIRED": "true",
+    "BRANCH_PROTECTION": "main,master",
+    "AUTO_PRUNE_BRANCHES": "true",
+    "CODE_QUALITY_ENABLED": "true",
+    "SONAR_LINT_ENABLED": "true",
+    "COMPLEXITY_THRESHOLD": "10",
+    "ANTI_PATTERN_DETECTION": "enabled",
+    "CODE_COVERAGE_MIN": "80",
+    "TEST_ENABLED": "true",
+    "TEST_FRAMEWORK": "auto-detect",
+    "COVERAGE_ENABLED": "true",
+    "COVERAGE_THRESHOLD": "80",
+    "COVERAGE_DIR": "coverage",
+    "COVERAGE_FORMAT": "lcov",
+    "RUN_UNIT_TESTS": "true",
+    "RUN_INTEGRATION_TESTS": "true",
+    "RUN_E2E_TESTS": "false",
+    "TEST_PARALLEL": "true",
+    "TEST_TIMEOUT": "5000",
+    "AI_BACKEND_URL": "http://ai-backend:8000",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1"
+  },
+
+  "vscode": {
+    "settings": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+      },
+      "editor.rulers": [88, 120],
+      "files.trimTrailingWhitespace": true,
+      "files.insertFinalNewline": true,
+      "files.exclude": {
+        "**/__pycache__": true,
+        "**/.pytest_cache": true,
+        "**/*.pyc": true,
+        "**/node_modules": true,
+        "**/.git": false
+      },
+      "files.associations": {
+        "*.log": "log",
+        "*.md": "markdown",
+        "CHANGELOG": "markdown",
+        "CONTRIBUTING": "markdown"
+      },
+      "markdown.preview.fontSize": 14,
+      "markdown.preview.lineHeight": 1.6,
+      "[markdown]": {
+        "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+        "editor.wordWrap": "on",
+        "editor.quickSuggestions": {
+          "comments": "on",
+          "strings": "on",
+          "other": "on"
+        }
+      },
+      "better-comments.tags": [
+        {
+          "tag": "!",
+          "color": "#FF2D00",
+          "strikethrough": false,
+          "backgroundColor": "transparent"
+        },
+        {
+          "tag": "?",
+          "color": "#3498DB",
+          "strikethrough": false,
+          "backgroundColor": "transparent"
+        },
+        {
+          "tag": "//",
+          "color": "#474747",
+          "strikethrough": true,
+          "backgroundColor": "transparent"
+        },
+        {
+          "tag": "todo",
+          "color": "#FF8C00",
+          "strikethrough": false,
+          "backgroundColor": "transparent"
+        },
+        {
+          "tag": "*",
+          "color": "#98C379",
+          "strikethrough": false,
+          "backgroundColor": "transparent"
+        }
+      ],
+      "terminal.integrated.defaultProfile.linux": "zsh",
+      "git.autofetch": true,
+      "git.confirmSync": false,
+      "git-graph.showStatusBarItem": true,
+      "git-graph.showTags": true,
+      "conventionalCommits.autoCommit": false,
+      "conventionalCommits.scopes": ["core", "ui", "api", "docs", "test", "ci", "build"],
+      "projectManager.git.baseFolders": [
+        "${env:HOME}/projects",
+        "${env:HOME}/repos",
+        "d:/Repos"
+      ],
+      "peacock.favoriteColors": [
+        { "name": "Angular Red", "value": "#dd0531" },
+        { "name": "Azure Blue", "value": "#007fff" },
+        { "name": "JavaScript Yellow", "value": "#f9e64f" },
+        { "name": "Mandalorian Blue", "value": "#1857a4" },
+        { "name": "Node Green", "value": "#215732" },
+        { "name": "React Blue", "value": "#61dafb" },
+        { "name": "Python Blue", "value": "#4B8BBE" },
+        { "name": "Vue Green", "value": "#42b883" }
+      ],
+      "taskExplorer.enableExplorerView": true,
+      "taskExplorer.enableSideBar": true,
+      "testExplorer.useNativeTesting": true,
+      "testExplorer.onStart": null,
+      "testExplorer.onReload": null,
+      "testExplorer.codeLens": true,
+      "testExplorer.gutterDecoration": true,
+      "testExplorer.errorDecoration": true,
+      "testExplorer.sort": "byLocation",
+      "coverage-gutters.coverageFileNames": [
+        "lcov.info",
+        "cov.xml",
+        "coverage.xml",
+        "jacoco.xml",
+        "coverage.json"
+      ],
+      "coverage-gutters.coverageBaseDir": "**",
+      "coverage-gutters.showLineCoverage": true,
+      "coverage-gutters.showRulerCoverage": true,
+      "coverage-gutters.showGutterCoverage": true,
+      "coverage-gutters.highlightdark": "rgba(0, 128, 0, 0.2)",
+      "coverage-gutters.noHighlightDark": "rgba(255, 0, 0, 0.2)",
+      "coverage-gutters.partialHighlightDark": "rgba(255, 255, 0, 0.2)",
+      "sonarlint.rules": {
+        "javascript:S1134": {
+          "level": "on"
+        },
+        "python:S1134": {
+          "level": "on"
+        }
+      },
+      "sonarlint.output.showAnalyzerLogs": false,
+      "sonarlint.output.showVerboseLogs": false,
+      "codemetrics.basics.ComplexityLevelNormal": 5,
+      "codemetrics.basics.ComplexityLevelHigh": 10,
+      "codemetrics.basics.ComplexityLevelExtreme": 15,
+      "codemetrics.basics.EnabledForFile": true,
+      "codemetrics.basics.DecorationModeEnabled": true
+    }
+  },
+
+  "scripts": {
+    "postCreate": [
+      "install-extensions",
+      "setup-git-hooks",
+      "configure-continue",
+      "install-dependencies"
+    ],
+    "postStart": [
+      "check-ai-backend",
+      "display-welcome"
+    ]
+  }
+}

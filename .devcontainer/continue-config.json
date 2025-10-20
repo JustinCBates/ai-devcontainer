@@ -1,0 +1,113 @@
+{
+  "models": [
+    {
+      "title": "Self-Hosted AI",
+      "provider": "openai",
+      "model": "microsoft/DialoGPT-medium",
+      "apiKey": "not-required",
+      "apiBase": "http://ai-backend:8000/v1",
+      "requestOptions": {
+        "timeout": 300000
+      }
+    }
+  ],
+  "tabAutocompleteModel": {
+    "title": "Self-Hosted Autocomplete",
+    "provider": "openai",
+    "model": "microsoft/DialoGPT-medium",
+    "apiKey": "not-required",
+    "apiBase": "http://ai-backend:8000/v1"
+  },
+  "embeddingsProvider": {
+    "provider": "transformers.js"
+  },
+  "reranker": {
+    "name": "transformers.js"
+  },
+  "contextProviders": [
+    {
+      "name": "code",
+      "params": {}
+    },
+    {
+      "name": "docs",
+      "params": {}
+    },
+    {
+      "name": "diff",
+      "params": {}
+    },
+    {
+      "name": "terminal",
+      "params": {}
+    },
+    {
+      "name": "problems",
+      "params": {}
+    },
+    {
+      "name": "folder",
+      "params": {}
+    },
+    {
+      "name": "codebase",
+      "params": {}
+    }
+  ],
+  "slashCommands": [
+    {
+      "name": "edit",
+      "description": "Edit selected code"
+    },
+    {
+      "name": "comment",
+      "description": "Write comments for the selected code"
+    },
+    {
+      "name": "share",
+      "description": "Export the current chat session to markdown"
+    },
+    {
+      "name": "cmd",
+      "description": "Generate a shell command"
+    },
+    {
+      "name": "commit",
+      "description": "Generate a git commit message"
+    }
+  ],
+  "customCommands": [
+    {
+      "name": "test",
+      "prompt": "Write comprehensive unit tests for the following code. Use pytest and include edge cases:\n\n{{{ input }}}\n\nEnsure tests are well-documented and follow best practices.",
+      "description": "Generate comprehensive tests"
+    },
+    {
+      "name": "optimize",
+      "prompt": "Analyze and optimize the following code for performance:\n\n{{{ input }}}\n\nFocus on:\n- Time complexity\n- Space complexity\n- Readability\n- Best practices",
+      "description": "Optimize code for performance"
+    },
+    {
+      "name": "security",
+      "prompt": "Perform a security audit of the following code:\n\n{{{ input }}}\n\nIdentify:\n- Security vulnerabilities\n- Input validation issues\n- Authentication/authorization problems\n- Data exposure risks\n\nProvide specific fixes for each issue.",
+      "description": "Security analysis"
+    },
+    {
+      "name": "refactor",
+      "prompt": "Refactor the following code to improve its structure:\n\n{{{ input }}}\n\nApply:\n- SOLID principles\n- Design patterns where appropriate\n- Better naming conventions\n- Improved modularity",
+      "description": "Refactor code structure"
+    },
+    {
+      "name": "explain",
+      "prompt": "Explain the following code in detail:\n\n{{{ input }}}\n\nInclude:\n- What it does\n- How it works\n- Key concepts used\n- Potential improvements",
+      "description": "Explain code in detail"
+    },
+    {
+      "name": "docker",
+      "prompt": "Create a Dockerfile and docker-compose.yml for the following application:\n\n{{{ input }}}\n\nInclude:\n- Multi-stage builds\n- Security best practices\n- Health checks\n- Volume mounts",
+      "description": "Generate Docker configuration"
+    }
+  ],
+  "allowAnonymousTelemetry": false,
+  "docs": []
+}

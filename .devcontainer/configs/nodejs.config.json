@@ -1,0 +1,53 @@
+{
+  "extends": "base.config.json",
+  "name": "Node.js Development Configuration",
+  "description": "Node.js/TypeScript development with AI assistance",
+  
+  "extensions": {
+    "additional": [
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "ms-vscode.vscode-typescript-next",
+      "christian-kohler.npm-intellisense",
+      "eg2.vscode-npm-script"
+    ]
+  },
+
+  "features": {
+    "logging": {
+      "library": "winston",
+      "format": "json"
+    },
+    "linting": {
+      "tools": {
+        "javascript": ["eslint", "prettier"],
+        "typescript": ["eslint", "prettier"]
+      }
+    },
+    "testing": {
+      "framework": "jest",
+      "plugins": ["@testing-library/jest-dom"]
+    }
+  },
+
+  "environment": {
+    "NODE_ENV": "development",
+    "NODE_VERSION": "lts"
+  },
+
+  "vscode": {
+    "settings": {
+      "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+      "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+      "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+      "eslint.validate": ["javascript", "typescript"],
+      "npm.enableScriptExplorer": true
+    }
+  }
+}

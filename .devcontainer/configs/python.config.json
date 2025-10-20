@@ -1,0 +1,51 @@
+{
+  "extends": "base.config.json",
+  "name": "Python Development Configuration",
+  "description": "Python-focused development with AI assistance",
+  
+  "extensions": {
+    "additional": [
+      "ms-toolsai.jupyter",
+      "ms-python.debugpy",
+      "njpwerner.autodocstring",
+      "donjayamanne.python-environment-manager"
+    ]
+  },
+
+  "features": {
+    "logging": {
+      "library": "loguru",
+      "format": "{time:YYYY-MM-DD HH:mm:ss} | {level: <8} | {name}:{function}:{line} | {message}"
+    },
+    "linting": {
+      "tools": {
+        "python": ["flake8", "pylint", "black", "isort", "mypy"]
+      }
+    },
+    "testing": {
+      "framework": "pytest",
+      "plugins": ["pytest-cov", "pytest-asyncio", "pytest-mock"]
+    }
+  },
+
+  "environment": {
+    "PYTHON_VERSION": "3.11",
+    "PYTHONPATH": "/workspace"
+  },
+
+  "vscode": {
+    "settings": {
+      "python.defaultInterpreterPath": "/usr/local/bin/python",
+      "python.linting.enabled": true,
+      "python.linting.pylintEnabled": true,
+      "python.linting.flake8Enabled": true,
+      "python.testing.pytestEnabled": true,
+      "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": "explicit"
+        }
+      }
+    }
+  }
+}

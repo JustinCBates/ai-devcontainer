@@ -1,0 +1,56 @@
+{
+  "extends": "base.config.json",
+  "name": "Full Stack Development Configuration",
+  "description": "Full stack development with Python backend and Node.js frontend",
+  
+  "extensions": {
+    "additional": [
+      "ms-toolsai.jupyter",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "bradlc.vscode-tailwindcss",
+      "ms-azuretools.vscode-docker",
+      "redhat.vscode-yaml"
+    ]
+  },
+
+  "features": {
+    "logging": {
+      "backend": "loguru",
+      "frontend": "winston"
+    },
+    "linting": {
+      "tools": {
+        "python": ["flake8", "pylint", "black", "isort"],
+        "javascript": ["eslint", "prettier"],
+        "typescript": ["eslint", "prettier"]
+      }
+    },
+    "testing": {
+      "backend": "pytest",
+      "frontend": "jest"
+    }
+  },
+
+  "environment": {
+    "PYTHON_VERSION": "3.11",
+    "NODE_ENV": "development",
+    "API_URL": "http://localhost:8000",
+    "FRONTEND_PORT": "3000"
+  },
+
+  "vscode": {
+    "settings": {
+      "python.defaultInterpreterPath": "/usr/local/bin/python",
+      "[python]": {
+        "editor.defaultFormatter": "ms-python.black-formatter"
+      },
+      "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      },
+      "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      }
+    }
+  }
+}

@@ -1,0 +1,130 @@
+{
+  "name": "AI-Powered Development Container",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "devcontainer",
+  "workspaceFolder": "/workspace",
+
+  // Configuration is loaded dynamically from .devcontainer/configs/*.config.json
+  // Set CONFIG_FILE environment variable to choose a specific config (default: python.config.json)
+  "containerEnv": {
+    "CONFIG_FILE": "${localEnv:DEVCONTAINER_CONFIG_FILE:${containerWorkspaceFolder}/.devcontainer/configs/python.config.json}"
+  },
+
+  // Set *default* container specific settings.json values on container create.
+  "customizations": {
+    "vscode": {
+      // VS Code extensions to install
+      "extensions": [
+        "continue.continue",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        "ms-python.isort",
+        "ms-toolsai.jupyter",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "eamodio.gitlens",
+        "GitHub.copilot",
+        "ms-azuretools.vscode-docker",
+        "streetsidesoftware.code-spell-checker",
+        "PKief.material-icon-theme",
+        "wayou.vscode-todo-highlight",
+        "usernamehw.errorlens",
+        "Gruntfuggly.todo-tree"
+      ],
+      
+      // VS Code settings
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "zsh": {
+            "path": "/bin/zsh"
+          }
+        },
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "python.formatting.provider": "black",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": "explicit"
+        },
+        "files.exclude": {
+          "**/__pycache__": true,
+          "**/.pytest_cache": true,
+          "**/*.pyc": true
+        },
+        "git.autofetch": true,
+        "git.confirmSync": false,
+        "workbench.iconTheme": "material-icon-theme",
+        "workbench.colorTheme": "Default Dark+",
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.formatOnSave": true,
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+          }
+        },
+        "[javascript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[json]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        }
+      }
+    }
+  },
+
+  // Features to add to the dev container
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "installOhMyZsh": true,
+      "configureZshAsDefaultShell": true,
+      "username": "vscode",
+      "userUid": "1000",
+      "userGid": "1000"
+    }
+  },
+
+  // Configure tool-specific properties
+  "portsAttributes": {
+    "8000": {
+      "label": "AI Backend API",
+      "onAutoForward": "notify"
+    },
+    "3000": {
+      "label": "Application",
+      "onAutoForward": "openBrowser"
+    }
+  },
+
+  // Forward ports from the container to the host
+  "forwardPorts": [8000, 3000],
+
+  // Use 'postCreateCommand' to run commands after the container is created
+  "postCreateCommand": "bash /workspace/.devcontainer/post-create.sh",
+
+  // Use 'postStartCommand' to run commands after the container starts
+  "postStartCommand": "bash /workspace/.devcontainer/post-start.sh",
+
+  // Comment out to connect as root instead
+  "remoteUser": "vscode",
+
+  // Mount the Continue configuration
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.continue,target=/home/vscode/.continue,type=bind,consistency=cached"
+  ]
+}

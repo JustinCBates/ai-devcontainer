@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  # AI Backend Service (references your self-hosted-ai-continue repo)
+  ai-backend:
+    image: self-hosted-ai:latest  # Build from your other repo
+    # Alternatively, build from a local path:
+    # build:
+    #   context: ../self-hosted-ai-continue
+    #   dockerfile: docker/Dockerfile
+    container_name: ai-backend
+    ports:
+      - "8000:8000"
+      - "9090:9090"
+    volumes:
+      - ai-models:/app/models
+      - ./ai-backend-env:/app/.env:ro
+    environment:
+      - DEBUG=False
+      - USE_GPU=False
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - ENABLE_CORS=True
+    networks:
+      - dev-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    restart: unless-stopped
+
+  # Development Container
+  devcontainer:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    container_name: ai-devcontainer
+    volumes:
+      - ../ai-devcontainer:/workspace:cached
+      - vscode-extensions:/home/vscode/.vscode-server/extensions
+      - vscode-extensions-insiders:/home/vscode/.vscode-server-insiders/extensions
+      # Mount Continue config from host (optional)
+      # - ${HOME}/.continue:/home/vscode/.continue:cached
+    command: sleep infinity
+    networks:
+      - dev-network
+    depends_on:
+      ai-backend:
+        condition: service_healthy
+    environment:
+      - AI_BACKEND_URL=http://ai-backend:8000
+    # Expose ports for your applications
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+      - "5000:5000"
+      - "8080:8080"
+
+networks:
+  dev-network:
+    driver: bridge
+
+volumes:
+  ai-models:
+    driver: local
+  vscode-extensions:
+    driver: local
+  vscode-extensions-insiders:
+    driver: local
